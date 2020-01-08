@@ -53,7 +53,7 @@ function preceding(string, antecdent, target){
   if (antecdent.type === "number"){
     antReg = antecdent.nounType(antecdent.data, true)
   } else if(antecdent.type === "noun"){
-    antReg = antecdent.data()
+    antReg = antecdent.data(null, true)
   }
 
   if(target.type === "number"){

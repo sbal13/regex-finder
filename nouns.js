@@ -39,11 +39,26 @@ function words (number, negative = false){
   }
 }
 
+function string(number, negative = false){
+  if (negative){
+    return {
+      regex: "(?<=([.!?]\\s)|^)([^.!?]*)$",
+      offset: 0
+    }  
+  } else {
+    return {
+      regex: "\\S(.*?)([.!?]|$)",
+      offset: 0
+    }
+  }
+}
+
 const NOUNS = {
   email,
   date,
   word,
-  words
+  words,
+  string
 }
 
 module.exports = NOUNS
