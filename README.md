@@ -25,6 +25,8 @@ Body:
 
 ## Thought Process
 
+I realize that most of the rules specified by the prompt have much simpler solutions in isolation of each other. However I wanted to push this both achieve better scability and challenge my knowledge of regex syntax.
+
 In making this application, the my primary concern was scalability. The rules and queries presented in the prompt represented only a small subset of possiblities for rules, and it would be impossible to account for all possible things that people would want to find (e.g. emails, dates, names, strings, words) and all possible ways to find them (e.g. through, preceding, following) in the first run. The idea was to make this application scalable in the sense that rules and queries should be able to be easily added as time goes on.
 
 The idea was to categorize the words of the rules into three groups:
@@ -42,7 +44,7 @@ Numbers are used in a variety of ways but the assumption is that they always app
 Eventually, additional rules, nouns, and numbers could be added to their respective lists so long as they follow a specified structure.
 
 
-## What works
+## What works and what doesn't
 
 Given some text, all the rules specified in the prompt should work. A few assumptions were made:
 
@@ -50,8 +52,6 @@ Given some text, all the rules specified in the prompt should work. A few assump
 I interpreted "string" as meaning "the rest of the sentence", in this case the part of a sentence preceding the word phone.
 
 2. `preceding` and `following` were interpreted as "immediately preceding" and "immediately following". This means that if the rule is `"email following 3 words"`, it will look for an email immediately following the first three words. Another interpretation could have been "first email following the first three words", but this can be adjusted for if need be.
-
-## What works and what doesn't
 
 ### Working numbers
 
@@ -81,6 +81,8 @@ There are some bugs to fix.
 - Duplicate words can cause problems in unexpected ways for "following" and "preceding". This has to do with how I split the string once the target is found.
 
 The code definitely repeats itself at times, and abstractions could be made for those places. The "through" rule, for example, uses the same code to locate the target word for both the antecedent and the subsequent.
+
+There is definitely room for throwing informative errors when rules and queries fail.
 
 The overall code structure code be improved. This iteration is my first attempt and while I tried to account for scability for the easy addition of rules and nouns, there are definitely easier ways to execute some of these queries. For instance, finding the first or second half of a sentence is easy to script, but difficult to find for a regex. 
 
